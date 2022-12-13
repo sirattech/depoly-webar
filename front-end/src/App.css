@@ -1,0 +1,28 @@
+.App {
+  text-align: center;
+}
+
+.container121 {
+  margin: 20px auto;
+  position: relative;
+  height: 400px;
+  width: 600px;
+  overflow: hidden;
+  z-index: 1111111;
+}
+html, body {
+  height: auto !important;
+background-color: #ecf0fd;
+z-index: -1;
+}
+
+@media(max-width: 576px){
+  .container121 {
+    margin: 20px auto;
+    position: relative;
+    height: 180%;
+    width: 100%;
+    overflow: hidden;
+    z-index: 1111111;
+  }
+}

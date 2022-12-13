@@ -1,0 +1,80 @@
+.daily-p{
+    color: #0e1a35 !important;
+    font-weight: 600 ;
+    font-size: 25px;
+}
+
+.daily-span{
+    color: #0e1a35 !important;
+    font-size: 12px;
+}
+.border-css{
+    border-top: 1px solid #0e1a35;
+    display: flex;
+    justify-content: center !important;
+}
+.table-th{
+    text-align: left;
+    padding-top: 10px;
+    background-color: #497ed354 !important;
+}
+.table-td{
+    font-size: 15px;
+    /* overflow-x: ; */
+    /* white-space: nowrap; 
+    width: 20px; 
+    overflow: hidden;
+    text-overflow: clip; 
+    border: 1px solid #000000; */
+}
+.first {
+    width: 18%;
+}
+.ellipsis {
+    position: relative;
+}
+.ellipsis:before {
+    content: ' ';
+    visibility: hidden;
+}
+.ellipsis span {
+    position: absolute;
+    left: 10px;
+    right: 0;
+    width: 80%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+  
+.btn-wwww{
+    background-color: #0e1a35;
+    color: white;
+    padding: 5px 30px;
+    border-radius: 10px;
+}
+
+.bouon{
+    background-color: #0e1a35;
+    color: white;
+    padding: 5px 30px;
+    border-radius: 10px;
+}
+@media(max-width: 576px){
+    .table-id{
+        display: block !important;
+        overflow-x: auto !important;
+        width: 88vw !important;
+        padding: 0;
+        margin: 0;
+      }
+      .daily-p{
+        color: #0e1a35 !important;
+        font-weight: 600 ;
+        font-size: 20px;
+    }
+}
+
+
+
+

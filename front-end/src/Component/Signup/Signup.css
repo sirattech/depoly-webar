@@ -1,0 +1,182 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+.signup-color{
+    background-image: url("../../Assets/background-sign.png");
+    height: 100vh;
+}
+.box-mini{
+    background-color: #bcc7df;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    display: flex;
+    justify-content: center;
+}
+.row{
+    --bs-gutter-x: 0rem !important;
+    --bs-gutter-y: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: calc(-1 * var(--bs-gutter-y));
+    margin-right: calc(-.5 * var(--bs-gutter-x));
+    margin-left: calc(-.5 * var(--bs-gutter-x));
+}
+.sign-h5{
+    font-size: 19px;
+    font-weight: 800 !important;
+    color: white;
+    font-family: 'Raleway', sans-serif;
+}
+.btn-sign{
+    border: 1px solid white;
+    color: white;
+    font-size: 18px;
+    font-family: 'Raleway', sans-serif;
+}
+.btn-sign:hover{
+    border: 1px solid white;
+    color: white;
+    font-size: 18px;
+    font-family: 'Raleway', sans-serif;
+}
+.bottom-box{
+    background-color: #bcc7df; 
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+.circle-img{
+    background-image: url("../../Assets/Shape12.png");
+}
+.welcome-h4{
+    position: absolute;
+    font-family: 'Raleway', sans-serif;
+    font-size: 30px;
+    color: white;
+    font-weight: bold;
+    text-shadow: 3px 3px 20px #717171,
+    -2px 1px 30px #717171;
+    padding-top: 20px;
+    font-family: 'Raleway', sans-serif;
+}
+.input-group-text{
+    background-color: #0f103c;
+    color: white;
+    border-top-right-radius: 50px !important;
+    border-bottom-right-radius: 50px !important;
+    border: 0.5px solid #0f103c !important;
+}
+input[type="text"]{
+    background-color: #0f103c;
+    border-top-left-radius: 50px !important;
+    border-bottom-left-radius: 50px !important;
+    color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 0.5px solid #0f103c !important;
+}
+input[type="text"]:focus{
+    background-color: #0f103c;
+    color: white;
+    border: 0.5px solid #0f103c !important;
+}
+input[type="password"]{
+    background-color: #0f103c;
+    border-top-left-radius: 50px !important;
+    border-bottom-left-radius: 50px !important;
+    color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 0.5px solid #0f103c !important;
+}
+input[type="password"]:focus{
+    background-color: #0f103c;
+    color: white;
+    border: 0.5px solid #0f103c !important;
+}
+input[type=checkbox] {
+    position: relative;
+      border: 2px solid #000;
+      border-radius: 2px;
+      background: none;
+      cursor: pointer;
+      line-height: 0;
+      margin: 0 .6em 0 0;
+      outline: 0;
+      padding: 0 !important;
+      vertical-align: text-top;
+      height: 20px;
+      width: 20px;
+      -webkit-appearance: none;
+    opacity: .5;
+    border-radius: 20px;
+  }
+  
+  input[type=checkbox] .input-data:hover {
+    opacity: 1;
+  }
+  
+  input[type=checkbox] .input-data:checked {
+    background-color: #0f103c;
+    border-radius: 20px;
+    opacity: 1;
+  }
+  
+  input[type=checkbox] .input-data:before {
+    content: '';
+    position: absolute;
+    right: 50%;
+    top: 50%;
+    width: 5px;
+    height: 12px;
+    border: solid #bcc7df;
+    border-width: 0 2px 2px 0;
+    margin: -1px -1px 0 -1px;
+    transform: rotate(45deg) translate(-50%, -50%);
+    z-index: 2;
+  }
+  .lable-text{
+    color: white;
+    font-family: 'Raleway', sans-serif;
+  }
+  .btn-signup{
+    background-color: #0d3eaf;
+    border-radius: 50px;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: 'Raleway', sans-serif;
+  }
+  .btn-signup:hover{
+    background-color: #0d3eaf;
+    border-radius: 50px;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: 'Raleway', sans-serif;
+  }
+  .account-text{
+    font-size: 14px;
+    color: white;
+  }
+  .Password-span{
+    color: white;
+    font-size: 18px;
+  }
+  .input-data input:-webkit-autofill {
+    /* -webkit-box-shadow:0 0 0 50px white inset;  */
+    -webkit-text-fill-color: #0f103c !important;
+}
+
+.input-data input:-webkit-autofill:focus {
+    /* -webkit-box-shadow: 0 0 0 50px white inset; */
+    -webkit-text-fill-color: #0f103c !important;
+}
+  @media(max-width: 576px){
+    .signup-color{
+        background-image: url("../../Assets/background-sign.png");
+        height: 110vh;
+    }
+    .display-n{
+        display: none;
+    }
+  }

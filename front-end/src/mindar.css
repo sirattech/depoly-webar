@@ -1,0 +1,10 @@
+.video-a{
+    width: 600px;
+    height: 600px;
+}
+.playcss{
+    margin-top: 300px !important;
+    border: 2px solid red;
+    position: absolute;
+    z-index: 20000000;
+}

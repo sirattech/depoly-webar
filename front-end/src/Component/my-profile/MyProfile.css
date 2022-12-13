@@ -1,0 +1,105 @@
+.account-h2{
+    font-size: 30px;
+    color: #0c1e60;
+    font-weight: 700;
+}
+.account-span{
+    color: #0c1e60;
+}
+.mini-box{
+    background-color: #e6ecfa;
+    border: 1px solid rgb(209, 209, 209);
+    text-align: left;
+    font-size: 18px;
+    font-weight: 700;
+    color: black;
+    cursor: pointer;
+}
+.mini-box-active{
+    background-color: #e6ecfa;
+    border: 1px solid rgb(209, 209, 209);
+    text-align: left;
+    font-size: 18px;
+    font-weight: 700;
+    color: rgb(15, 61, 180);
+    cursor: pointer;
+}
+.boxes{
+    background-color: #e6ecfa;
+    border: 2px solid white; 
+    border-radius: 10px;
+}
+.first-h5{
+    font-size: 20px;
+    font-weight: 700 !important;
+    /* border: 2px solid red; */
+}
+.first-span{
+    font-size: 17px;
+}
+
+.down-boxes{
+    background: white;
+    border: 1px solid rgb(209, 209, 209);
+    border-radius: 10px;
+    width: 300px;
+}
+.down-boxes-blue{
+    background: #0c1e60;
+    border: 1px solid rgb(209, 209, 209);
+    border-radius: 10px;
+    color: white;
+    width: 300px;
+}
+.Basic-h4{
+    font-size: 18px;
+    font-weight: 700;
+}
+.account-h22{
+    font-size: 20px;
+    color: #0c1e60;
+    font-weight: 700;
+}
+ul {
+    list-style-type: none;
+  }
+
+  .Website-h5{
+    font-size: 15px;
+    font-weight: 700;
+  }
+  .li-text{
+    font-size: 14px;
+  }
+
+  .btn-buy{
+    background-color: #3c62eb;
+    border-radius: 50px;
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+  }
+  
+  .btn-buy:hover{
+    background-color: #3c62eb;
+    border-radius: 50px;
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  @media(max-width:576px){
+    .down-boxes{
+        background: white;
+        border: 1px solid rgb(209, 209, 209);
+        border-radius: 10px;
+        width: 95%;
+    }
+    .down-boxes-blue{
+        background: #0c1e60;
+        border: 1px solid rgb(209, 209, 209);
+        border-radius: 10px;
+        color: white;
+        width: 95%;
+    }
+  }

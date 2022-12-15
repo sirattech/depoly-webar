@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect, useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import 'mind-ar/dist/mindar-image.prod.js';
 // import 'aframe';
@@ -20,7 +20,15 @@ import Preview from './Component/Preview/Preview';
 import Publish from './Component/Publish/Publish';
 
 function App() {
-  
+  let [data, setData] = useState("")
+  console.log("data1111", data);
+
+  const dataEdit =()=>{
+    setData(data)
+  }
+  useEffect(()=>{
+    console.log("data", data);
+  },[])
   return (
     <div className="App">
       {/* <Pagination/> */}
@@ -37,9 +45,9 @@ function App() {
             <Route path='myproject' element={<MyProject />} />
             <Route path="myprofile" element={<MyProfile />} />
           </Route>
-            <Route path="/mindar" element={<div className="container121"><MindarViewer /><video></video></div>} />
             
         </Route>
+            <Route path="/mindar" element={<div className="container121"><MindarViewer /><video></video></div>} />
       </Routes>
     
 

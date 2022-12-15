@@ -14,10 +14,12 @@ console.log("link", link);
 console.log("mind", mind);
 console.log("TranslationURL", TranslationURL);
 console.log("radio", radio);
-
+console.log("window.innerWidth", window.innerWidth);
 const vidRef = useRef();
-
+let [videoWidth, setVideoWidth] = useState();
+let [videoHeight,setVideoHeight] = useState()
   const getPlay = async() => {
+    console.log("window.innerWidth", window.innerWidth);
 try{
   console.log("before");
   const video = vidRef.current;
@@ -27,7 +29,11 @@ try{
  await myVideoPlayer.addEventListener('loadedmetadata', function () {
     
     console.log("duration", myVideoPlayer.duration);
+    console.log("width: " + video.videoWidth + " " + "height: " + video.videoHeight);
 });
+setVideoWidth(video.videoWidth);
+setVideoHeight(video.videoHeight)
+// console.log("width: " + video.videoWidth + " " + "height: " + video.videoHeight);
 var durations = myVideoPlayer.duration;
 var durationss = durations * 1000
 console.log("durationsss", durations);
@@ -61,6 +67,8 @@ console.log("durationsss", durations);
   console.log("e", e);
 }
   }
+console.log("videoWidth", videoWidth);
+console.log("videoHeight", videoHeight);
 
   useEffect(() => {
     setTimeout(() => {
@@ -79,7 +87,7 @@ console.log("durationsss", durations);
         <a-assets>
           <video src={link}
             ref={vidRef}
-            // onLoadedMetadata={handleLoadedMetadata}
+            
             preload="auto" id="vid" response-type="arraybuffer" loop
             crossOrigin="true"  autoPlay muted playsInline style={{ zIndex: '200000000' }}
           >
@@ -91,17 +99,24 @@ console.log("durationsss", durations);
           <img id="cardthree" src='images/linkedin.png' width={20}/>
           </div> */}
         </a-assets>
-        <a-camera position="0 0 0" look-controls="enabled: false" timeout="50000"></a-camera>
+        <a-camera position="0 0 0" look-controls="enabled: false" ></a-camera>
         <a-entity mindar-image-target="targetIndex: 0" id="example-target" timeout="50000">
-          <a-video src="#vid" position={radio.replaceAll("_", " ")} height="0.5" width="0.5" rotation="0 0 0 " scale="1 1 1" className="video-a" id="vido" timeout="50000"></a-video>
+          <a-video src="#vid" position={radio.replaceAll("_", " ")} height="0.50" width="0.75" rotation="0 0 0" scale="1 1 1" className="video-a" id="vido" timeout="50000"></a-video>
+
+          {/* <a-image src="#card" position="0 -0.25 0" height="0.75" width="0.75" rotation="0 0 0"></a-image> */}
           {/* <a-image src="#card" position="0 -0.25 0" height="0.552" width="0.5" rotation="0 0 0"></a-image>
           <a-image src="#cardone" position="0 -0.650 0" height="0.252" width="0.2" rotation="0 0 0"></a-image> */}
           {/* <a-plane src="#cardtwo" position="0 -0.500 1.75" height="0.252" width="0.2" rotation="0 0 0"></a-plane>
         <a-plane src="#cardthree" position="0 -0.500 2.150" height="0.252" width="0.2" rotation="0 0 0"></a-plane> */}
         </a-entity>
-        <a-entity mindar-image-target="targetIndex: 1" id="example-target" timeout="50000">
-        </a-entity >
+        {/* <a-entity mindar-image-target="targetIndex: 1" id="example-target" timeout="50000">
+        </a-entity > */}
       </a-scene>
   
   )
 }
+
+
+{/* <a-video src="#vid" position={radio.replaceAll("_", " ")} height="0.50" width="0.70" rotation="0 0 0" scale="1 1 1" className="video-a" id="vido" timeout="50000"></a-video> */}
+// 
+// {radio.replaceAll("_", " ")} 

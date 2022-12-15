@@ -4,7 +4,9 @@ import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
 import { useNavigate } from "react-router-dom"
 import { BACKEND_URI } from "../../config/config"
-function HomePage() {
+import Spinner from 'react-bootstrap/Spinner';
+
+function HomePage({ editData, isNavColor }) {
     const inputRef = useRef();
     const inputImageRef = useRef()
     const [source, setSource] = useState();
@@ -19,6 +21,7 @@ function HomePage() {
     const [getUerId, SetGetUserId] = useState()
     const [getVideoName, setGetVideoName] = useState()
     const navigate = useNavigate()
+    const [spinners, setSpinners] = useState(false)
     const handleMind = (e) => {
         let filess = e.target.files[0]
         console.log(filess);
@@ -59,17 +62,22 @@ function HomePage() {
         }
     }
     const GenerateQRCode = async (e) => {
-        try {
 
+
+
+        try {
+            setSpinners(true)
             const minddata = new FormData();
             minddata.append("mind", imageSource)
 
-            await axios.post(`${BACKEND_URI}/mindfile`, minddata,{
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded',
-                'Access-Control-Allow-Origin' : '*',
-             }
-              }).then((res) => {
+            await axios.post(`${BACKEND_URI}/mindfile`, minddata, {
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Access-Control-Allow-Origin': '*',
+                }
+            }).then((res) => {
                 console.log("minddata", res.data.filename);
+
                 SetGetUserId(res.data.filename);
             }).catch((e) => {
                 console.log("e", e);
@@ -78,24 +86,23 @@ function HomePage() {
             const imagedata = new FormData();
             imagedata.append("image", image);
 
-            await axios.post(`${BACKEND_URI}/imageupload`, imagedata,{
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded',
-                'Access-Control-Allow-Origin' : '*',
-             }
-              }).then((res) => {
+            await axios.post(`${BACKEND_URI}/imageupload`, imagedata, {
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Access-Control-Allow-Origin': '*',
+                }
+            }).then((res) => {
                 console.log(res);
+
             }).catch((e) => {
                 console.log("e", e);
             })
             const data = new FormData()
             data.append("file", source);
-            await axios.post(`${BACKEND_URI}/upload`, data,{
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded',
-                'Access-Control-Allow-Origin' : '*',
-             }
-              }).then((res) => {
+            await axios.post(`${BACKEND_URI}/upload`, data).then((res) => {
                 console.log("resaaa", res.data.filename);
                 setGetVideoName(res.data.filename)
+
             }).catch((e) => {
                 console.log("e", e);
             })
@@ -104,19 +111,23 @@ function HomePage() {
                 radio,
                 TranslationURL,
                 radioOne,
-                ids
-                // getUerId,
-                // getVideoName
+                ids,
+                editData
+
             }).then(res => {
                 console.log("ressetCheckBoxValue", res.data);
                 console.log(res.data);
                 let checkdata = res.data.webardata.TranslationURL
                 let chexk = res.data.webardata.radioOne;
                 let check = res.data.webardata.radio;
+                let editDAtessss = res.data.webardata.editData;
                 let dataget = res.data.dataget;
                 let filetoupload = res.data.filetoupload;
-                if (checkdata && chexk && check && dataget && filetoupload) {
+
+                if (checkdata && chexk && check && dataget && filetoupload, editDAtessss) {
+                    setSpinners(false)
                     localStorage.setItem("total data", JSON.stringify(res.data))
+                    isNavColor("Preview")
                     navigate("/sidebar/preview")
                     toast.success("Please Fill All input Feild")
                 }
@@ -129,7 +140,7 @@ function HomePage() {
             console.log("e", e);
         }
     }
-
+    console.log("homedata", editData);
     console.log("auths", ids);
 
     return (
@@ -172,7 +183,7 @@ function HomePage() {
             </div>
 
             <div className='row mt-3 ms-md-5'>
-                <div className="col-6 VideoInput mt-3 text-start">
+                <div className="col-lg-6 VideoInput mt-3 text-start">
 
 
                     <label className='YouTube-p text-start form-label'>Uplaod Mind File</label><br />
@@ -189,7 +200,7 @@ function HomePage() {
             </div>
 
             <div className='row mt-3 ms-md-5'>
-                <div className="col-6 VideoInput mt-3 text-start">
+                <div className="col-lg-6 VideoInput mt-3 text-start">
 
 
                     <label className='YouTube-p text-start form-label'>Image Uplaod</label><br />
@@ -266,7 +277,10 @@ function HomePage() {
                 </div>
 
             </div>
-            <button className='btn btn-primary mb-3' onClick={GenerateQRCode}>Generate</button>
+            <button className='btn btn-primary mb-3' onClick={GenerateQRCode}>
+                {/* Save */}
+                {spinners ? <Spinner animation="border" variant="light" /> : <>Save</>}
+            </button>
             <Toaster
                 position="top-right"
                 reverseOrder={false}

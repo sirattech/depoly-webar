@@ -18,11 +18,19 @@ z-index: -1;
 
 @media(max-width: 576px){
   .container121 {
-    margin: 20px auto;
+    margin: 80px auto;
     position: relative;
-    height: 180%;
+    height: 400px;
     width: 100%;
     overflow: hidden;
-    z-index: 1111111;
+    z-index: 55555555555;
   }
+  /* .container121 {
+    margin: 100px auto;
+    position: relative;
+    height:400px;
+    width: 98%;
+    overflow: hidden;
+    z-index: 1111111;
+  } */
 }

@@ -9,7 +9,7 @@ import {
   Link,
   useLocation,
 } from "react-router-dom";
-function Preview() {
+function Preview({isNavColor}) {
   const [showColorPickerOne, setShowColorPickerOne] = useState(false)
   const [showColorPicker, setShowColorPicker] = useState(false)
   const [isColor, setIsColor] = useState("#fff")
@@ -137,8 +137,9 @@ useEffect(async()=>{
         </div>
 <div className='col-12'>
           <button className="btn btn-primary mt-3" 
+          
           // onClick={downloadQR}
-          ><Link to="/sidebar/publish"  style={{ textDecoration: "none", color: "black" }}>Publish</Link></button>
+          ><Link to="/sidebar/publish"  style={{ textDecoration: "none", color: "white", fontSize: "20px" }} onClick={() => isNavColor("Publish")}>Publish</Link></button>
 </div>
       </div>
 

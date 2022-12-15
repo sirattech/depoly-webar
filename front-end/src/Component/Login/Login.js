@@ -13,6 +13,8 @@ import RemoveCookie from '../Cookies/RemoveCookie';
 import {AiFillEyeInvisible} from "react-icons/ai"
 import {MdVisibility} from "react-icons/md";
 import {BACKEND_URI} from "../../config/config"
+import Spinner from 'react-bootstrap/Spinner';
+
 function Login() {
   const navigate = useNavigate()
   const formSchema = Yup.object().shape({
@@ -32,12 +34,14 @@ function Login() {
 
   })
   const [passwordShown, setPasswordShown] = useState(false);
+  const [spinners, setSpinners] =  useState(false)
   const togglePassword = () => {
     setPasswordShown(!passwordShown);
   };
   const formOptions = { resolver: yupResolver(formSchema) }
   const { register, handleSubmit, formState: { errors } } = useForm(formOptions);
   const onSubmit = async (data) => {
+    setSpinners(true)
     await axios.post(`${BACKEND_URI}/login-data`, data,{
       headers: { 'Content-Type': 'application/x-www-form-urlencoded',
       'Access-Control-Allow-Origin' : '*',
@@ -53,10 +57,12 @@ function Login() {
         localStorage.setItem("webar", JSON.stringify(cookiesdata))
         // SetCookie('logindata', JSON.stringify(cookiesdata))
         toast.success("Login Successfully")
+        setSpinners(false)
         navigate('/sidebar/HomePage')
         // dispatch(userLogin(data))
       } else {
         toast.error("password or Email incorrect! Please enter correct gmail and password")
+        setSpinners(false)
       }
     }).catch(e => {
       console.log("e", e);
@@ -119,7 +125,8 @@ function Login() {
                           type="submit"
                         // onClick={()=>navigate("/sidebar")}
                         >
-                          Login
+                          {spinners? <Spinner animation="border" variant="light" />: <>Login</>}
+                          
                         </button>
                       </div>
                     </div>

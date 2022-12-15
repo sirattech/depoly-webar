@@ -22,6 +22,8 @@ import {AiFillEyeInvisible} from "react-icons/ai"
 import {MdVisibility} from "react-icons/md"
 import toast, { Toaster } from 'react-hot-toast';
 import {BACKEND_URI, LOCAL_URL} from "../../config/config"
+import Spinner from 'react-bootstrap/Spinner';
+
 function Signup() {
   const navigate =useNavigate()
   const formSchema = Yup.object().shape({
@@ -49,12 +51,13 @@ function Signup() {
   })
   const [showPassword,setShowPassword] = useState(false);
   const [showPasswordOne, setShowPasswordOne] = useState(false);
+  const [spinners, setSpinners] =  useState(false)
   const formOptions = { resolver: yupResolver(formSchema) }
   const { register, handleSubmit, resetField, watch, formState: { errors } } = useForm(formOptions);
   const onSubmit = async (data) => {
     try {
       console.log("data", data)
-      
+      setSpinners(true)
     await axios.post(`${BACKEND_URI}/register`, data,{
       headers: { 'Content-Type': 'application/x-www-form-urlencoded',
       'Access-Control-Allow-Origin' : '*',
@@ -62,11 +65,14 @@ function Signup() {
     }).then(res=>{
         console.log("res", res.data);
         if(res.data == "data successfully enter"){
+          setSpinners(false)
           toast.success('User Created Successfully 🙂! Login Here')
           navigate("/")
         } else if(res.data == "Duplicate"){
+          setSpinners(false)
           toast.error("User Already exist, Please Use another Email")
         } else{
+          setSpinners(false)
           toast.error("Server Error! Please Try Again")
         }
 
@@ -161,7 +167,7 @@ console.log("e", e);
                   <div className='col-6'>
                     <div className="d-grid gap-2">
                       <button className='btn btn-signup' type="submit" size="lg">
-                        SignUp
+                      {spinners? <Spinner animation="border" variant="light" />: <>SignUp</>}
                       </button>
                     </div>
                   </div>

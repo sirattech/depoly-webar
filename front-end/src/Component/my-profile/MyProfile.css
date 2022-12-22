@@ -16,12 +16,12 @@
     cursor: pointer;
 }
 .mini-box-active{
-    background-color: #e6ecfa;
-    border: 1px solid rgb(209, 209, 209);
+    background-color: #0c1e60;
+    border: 1px solid #0c1e60;
     text-align: left;
     font-size: 18px;
     font-weight: 700;
-    color: rgb(15, 61, 180);
+    color: rgb(255, 255, 255);
     cursor: pointer;
 }
 .boxes{
@@ -87,7 +87,40 @@ ul {
     font-size: 15px;
     font-weight: 700;
   }
+.dashboard-box{
+    background: #0c1e60;
+    border: 1px solid rgb(209, 209, 209);
+    border-radius: 10px;
+    color: white;
 
+}
+.min-box{
+    width: 60px;
+    height: 60px;
+    font-size: 30px;
+    border-radius: 50%;
+    background: white;
+    color: #0c1e60;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.two-span{
+    font-size: 25px;
+    font-weight: 700;
+    /*  */
+}
+.Order-span{
+    /* line-height: 32%; */
+}
+.btn-submit{
+    background-color: #0c1e60;
+    color: white;
+}
+.btn-submit:hover{
+    background-color: #0c1e60;
+    color: white;
+}
   @media(max-width:576px){
     .down-boxes{
         background: white;

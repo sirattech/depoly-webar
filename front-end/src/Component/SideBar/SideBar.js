@@ -46,7 +46,15 @@ import Publish from '../Publish/Publish';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-
+import { FiEdit } from "react-icons/fi"
+import { MdSwitchAccount } from "react-icons/md"
+import axios from 'axios';
+// import Typography from '@mui/material/Typography';
+// import Button from '@mui/material/Button';
+import { BACKEND_URI, LOCAL_URL } from "../../config/config"
+import Hello from '../hello/Hello';
+// import Popover from '@mui/material/Popover';
+// import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
 const drawerWidth = 240;
 
 interface Props {
@@ -55,12 +63,19 @@ interface Props {
 }
 
 export default function ResponsiveDrawer(props: Props, { setData }) {
+  let [projectName, setProjectName] = useState([])
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isColor, setIsColor] = useState("Create AR Project")
   const [navColor, isNavColor] = useState("save")
   const { pathname } = useLocation();
-  const [editData, setEditData] = useState("")
+  const [editData, setEditData] = useState("");
+  let [totalProject, setTotalProject] = useState(0);
+
+  let auth = localStorage.getItem("webar")
+
+  let auths = JSON.parse(auth)
+  console.log("auths", auths);
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -90,18 +105,54 @@ export default function ResponsiveDrawer(props: Props, { setData }) {
       }
     }
   }
+
+  // const StatusData = async () => {
+  //   try {
+
+  //     await axios.get(`${BACKEND_URI}/getdata`).then((resp) => {
+  //       let statusShow = []
+  //       let projectnames = []
+  //       for (var i = 0; i < resp.data.length; i++) {
+  //         console.log(resp.data[i]);
+  //         if (resp.data[i].webardata.ids == auths.IdAddress) {
+  //           console.log("res1", resp.data[i].webardata.editData);
+  //           let statusData = resp.data[i]
+            
+  //           projectnames.push(resp.data[i].webardata.editData)
+  //           statusShow.push(statusData)
+  //         }
+  //       }
+  //       setTotalProject(statusShow.length)
+  //       setProjectName(projectnames)
+  //     })
+  //   } catch (e) {
+  //     console.log("e", e);
+  //   }
+  // }
   useEffect(() => {
-    changeRoute()
+    changeRoute();
+    // StatusData();
   }, [])
   useEffect(() => {
     ChangeRouteTwo();
   }, [])
   // setData(editData);
-  console.log("editData", editData);
-  const navigate = useNavigate()
+  // console.log("editData", editData);
 
-  let auth = localStorage.getItem("webar")
-  
+  const navigate = useNavigate()
+  // const [anchorEl, setAnchorEl] = React.useState(null);
+
+  // const handleClick = (event) => {
+  //   setAnchorEl(event.currentTarget);
+  // };
+
+  // const handleClose = () => {
+  //   setAnchorEl(null);
+  // };
+
+  // const open = Boolean(anchorEl);
+  // const id = open ? 'simple-popover' : undefined;
+
 
   const drawer = (
     <div className="stakenmsColor1" style={{ color: "white" }}>
@@ -200,43 +251,60 @@ export default function ResponsiveDrawer(props: Props, { setData }) {
                 >
                   <MenuIcon style={{ color: "black" }} />
                 </IconButton>
-                <Navbar.Brand href="#home" className="newProject-span" >
+                <Navbar.Brand href="#home" className="newProject-span d-flex" >
                   <div
+                  id="projectName"
                     contentEditable
                     suppressContentEditableWarning="true"
                     onBlur={e => {
                       console.log(e.currentTarget.textContent);
-                      setEditData(e.currentTarget.textContent)
+                      setEditData(e.currentTarget.textContent);
+                      document.getElementById("projectName").style.border = "1px solid white"
                     }}
-                  // onChange={(e)=>setData(e.currentTarget.value)}
-                  // onClick={()=>{setData(e.currentTarget.textContent)}}
-                  // onInput={e => {
-                  //   console.log('Text inside div', e.currentTarget.textContent)
-                  //   setData(e.currentTarget.textContent)
-                  // }}
+
                   >
                     New AR Project Name
                   </div>
+                  &nbsp;<FiEdit className='mt-2' size={15} />
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav" >
                   <Nav className=" nav  d-flex justify-content-evenly nav-one-width" >
 
-                    <Nav.Link href="" className={navColor == "save" ? 'nav-text-active' : "nav-text"} id="save" onClick={() => isNavColor("save")} >
-                      {/* <Link to="/sidebar/Homepage" style={{ textDecoration: "none", color: "black" }}> */}
+                    {/* <Nav.Link href="" className={navColor == "save" ? 'nav-text-active' : "nav-text"} id="save" onClick={() => {
+                      isNavColor("save")
+                     
+                      }} on>
+                      
                       Save
-                      {/* </Link> */}
+                     
                     </Nav.Link>
                     <Nav.Link href="" className={navColor == "Preview" ? 'nav-text-active' : "nav-text"} id="Preview" onClick={() => isNavColor("Preview")} >Preview</Nav.Link>
-                    <Nav.Link href="" className={navColor == "Publish" ? 'nav-text-active' : "nav-text"} id="Publish" onClick={() => isNavColor("Publish")}>Publish</Nav.Link>
+                    <Nav.Link href="" className={navColor == "Publish" ? 'nav-text-active' : "nav-text"} id="Publish" onClick={() => isNavColor("Publish")}>Publish</Nav.Link> */}
                   </Nav>
                   <Nav className=' d-flex align-items-center justify-content-start'>
-                    <Nav.Link className='nav-text'><EmailIcon style={{ color: '#0e1a35' }} /></Nav.Link>
-                    <Nav.Link className='nav-text'><OverlayTrigger trigger="click" placement="bottom" overlay={popovers}><Badge badgeContent={4} color="primary"><NotificationsIcon style={{ color: '#0e1a35' }} /> </Badge></OverlayTrigger></Nav.Link>
-                    <Nav.Link href="">
-                      
-                      <OverlayTrigger trigger="click" placement="bottom" overlay={popover}><Stack ><Avatar src={two} /></Stack></OverlayTrigger>
+                    {/* <Nav.Link className='nav-text'><EmailIcon style={{ color: '#0e1a35' }} /></Nav.Link> */}
+                    <Nav.Link className='nav-text'>
+                      <Hello/>
+                     
+                      {/* <Button aria-describedby={id} variant="contained" onClick={handleClick}>
+                        Open Popover
+                      </Button>
+                      <Popover
+                        id={id}
+                        open={open}
+                        anchorEl={anchorEl}
+                        onClose={handleClose}
+                        anchorOrigin={{
+                          vertical: 'bottom',
+                          horizontal: 'left',
+                        }}
+                      >
+                        <Typography sx={{ p: 2 }}>The content of the Popover.</Typography>
+                      </Popover> */}
+                      {/* <OverlayTrigger trigger="click" placement="bottom" overlay={popovers} ><Badge badgeContent={totalProject} color="primary"><NotificationsIcon style={{ color: '#0e1a35' }} /> </Badge></OverlayTrigger> */}
                     </Nav.Link>
+                    <Nav.Link href=""><OverlayTrigger trigger="click" placement="bottom" overlay={popover}><Stack ><Avatar src={two} /></Stack></OverlayTrigger></Nav.Link>
                   </Nav>
                 </Navbar.Collapse>
               </Navbar>
@@ -286,7 +354,7 @@ export default function ResponsiveDrawer(props: Props, { setData }) {
           <Route exact path='/Homepage' element={<HomePage editData={editData} isNavColor={isNavColor} />} >
           </Route>
           <Route path="preview" element={<Preview />} isNavColor={isNavColor} />
-          <Route path="publish" element={<Publish />} />
+          <Route path="publish" element={<Publish setIsColor={setIsColor} />} />
           <Route exact path="/myproject" element={<MyProject />} />
           <Route exact path="/myprofile" element={<MyProfile />} />
           <Route exact path="/mindar" element={<div className="container121"><MindarViewer /><video></video></div>} />
@@ -297,9 +365,9 @@ export default function ResponsiveDrawer(props: Props, { setData }) {
 }
 
 const popover = (
-  <Popover id="popover-basic" style={{ zIndex: '1111', width: '150px' }}>
+  <Popover id="popover-basic" style={{ zIndex: '1111', width: '170px' }}>
     <Popover.Body>
-      <span className='setting-span'><Link to="/sidebar/myprofile" style={{ textDecoration: "none", color: "black" }} ><SettingsOutlinedIcon />setting</Link></span>
+      <span className='setting-span'><Link to="/sidebar/myprofile" style={{ textDecoration: "none", color: "black" }} ><MdSwitchAccount size={25} />My Account</Link></span>
       <br />
       <div className='setting-span mt-3'><Link to="/" onClick={() => { localStorage.clear() }} style={{ textDecoration: "none", color: "black" }}><ExitToAppIcon />Logout</Link></div>
     </Popover.Body>
@@ -307,24 +375,17 @@ const popover = (
 )
 
 
-const popovers = (
-  <Popover id="popover-basic" style={{ zIndex: '1111', width: '170px' }}>
-    <Popover.Body>
-      <span className='setting-span'>
-        <Badge badgeContent={1} color="primary">
-          <MailIcon color="action" />
-        </Badge>
-        &nbsp;Message 1</span>
-      <br />
-      <div className='setting-span mt-3'><Badge badgeContent={2} color="primary">
-        <MailIcon color="action" />
-      </Badge> &nbsp;Message 2</div>
-      <div className='setting-span mt-3'><Badge badgeContent={3} color="primary">
-        <MailIcon color="action" />
-      </Badge> &nbsp;Message 3</div>
-      <div className='setting-span mt-3'><Badge badgeContent={4} color="primary">
-        <MailIcon color="action" />
-      </Badge> &nbsp;Message 4</div>
-    </Popover.Body>
-  </Popover>
-)
+// const popovers = ({ projectName }) => (
+//   <Popover id="popover-basic" style={{ zIndex: '1111', width: '160px' }}>
+//     <Popover.Body>
+//       {
+//         projectName.map((items) => {
+//           return (
+//             <div className='setting-span'>Message 1</div>
+//           )
+//         })
+//       }
+
+//     </Popover.Body>
+//   </Popover>
+// )

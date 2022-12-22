@@ -14,12 +14,14 @@ function HomePage({ editData, isNavColor }) {
     const [radio, setRadio] = useState('false')
     const [radioOne, setRadioOne] = useState("false");
     const [TranslationURL, setTranslationURL] = useState("");
+    const [error,setError] = useState(false)
     const [value, setValue] = useState(0)
     let secondvalue = useRef(0)
     let [image, setimage] = useState("")
     const [ids, setIds] = useState();
     const [getUerId, SetGetUserId] = useState()
     const [getVideoName, setGetVideoName] = useState()
+    let [status,setState] = useState(0)
     const navigate = useNavigate()
     const [spinners, setSpinners] = useState(false)
     const handleMind = (e) => {
@@ -63,10 +65,19 @@ function HomePage({ editData, isNavColor }) {
     }
     const GenerateQRCode = async (e) => {
 
-
+        // navigate("/sidebar/preview")
 
         try {
             setSpinners(true)
+            
+            let eventTarget = document.getElementById("projectName")
+            if( !editData){
+                setError(true)
+                setSpinners(false)
+                alert("please Fill project Name in TopBar")
+                eventTarget.style.border ="2px solid red"
+                return false
+            }
             const minddata = new FormData();
             minddata.append("mind", imageSource)
 
@@ -106,14 +117,17 @@ function HomePage({ editData, isNavColor }) {
             }).catch((e) => {
                 console.log("e", e);
             })
-
+           
+            
+           
+             
             await axios.post(`${BACKEND_URI}/data`, {
                 radio,
                 TranslationURL,
                 radioOne,
                 ids,
-                editData
-
+                editData,
+                status,
             }).then(res => {
                 console.log("ressetCheckBoxValue", res.data);
                 console.log(res.data);
@@ -127,7 +141,7 @@ function HomePage({ editData, isNavColor }) {
                 if (checkdata && chexk && check && dataget && filetoupload, editDAtessss) {
                     setSpinners(false)
                     localStorage.setItem("total data", JSON.stringify(res.data))
-                    isNavColor("Preview")
+                    // isNavColor("Preview")
                     navigate("/sidebar/preview")
                     toast.success("Please Fill All input Feild")
                 }
@@ -140,8 +154,8 @@ function HomePage({ editData, isNavColor }) {
             console.log("e", e);
         }
     }
-    console.log("homedata", editData);
-    console.log("auths", ids);
+    // console.log("homedata", editData);
+    // console.log("auths", ids);
 
     return (
         <div className='container' style={{ maxHeight: '100vh' }} >
@@ -156,7 +170,7 @@ function HomePage({ editData, isNavColor }) {
                 <div className='col-lg-6 col-11 text-start' >
 
                     <div className="VideoInput mt-3">
-                        <label className='YouTube-p text-start form-label'>Uplaod Video</label><br />
+                        <label className='YouTube-p text-start form-label'>Upload Video</label><br />
                         <input
                             ref={inputRef}
                             className="VideoInput_input form-control"
@@ -186,7 +200,7 @@ function HomePage({ editData, isNavColor }) {
                 <div className="col-lg-6 VideoInput mt-3 text-start">
 
 
-                    <label className='YouTube-p text-start form-label'>Uplaod Mind File</label><br />
+                    <label className='YouTube-p text-start form-label'>Upload Mind File</label><br />
                     <input
                         ref={inputImageRef}
                         onChange={handleMind}
@@ -203,7 +217,7 @@ function HomePage({ editData, isNavColor }) {
                 <div className="col-lg-6 VideoInput mt-3 text-start">
 
 
-                    <label className='YouTube-p text-start form-label'>Image Uplaod</label><br />
+                    <label className='YouTube-p text-start form-label'>Upload Image</label><br />
                     <input
                         onChange={handleChange}
                         className="VideoInput_input form-control"
@@ -216,7 +230,7 @@ function HomePage({ editData, isNavColor }) {
             </div>
             <div className='row mt-4'>
                 <div className='col-12 text-start'>
-                    <h5 className='video-h5'>Video Postion (In Relation to Your Maker)</h5>
+                    <h5 className='video-h5'>Video Position (In Relation to Your Maker)</h5>
                 </div>
                 <div className='col-md-10  text-start ms-md-5 mt-3 uper-form'>
 
@@ -242,9 +256,9 @@ function HomePage({ editData, isNavColor }) {
 
                 </div>
                 <div className='col-lg-6 col-11 text-start  mt-3' >
-                    <label htmlFor="formFile" className='YouTube-p text-start form-label'>Translation to WHat URL</label>
+                    <label htmlFor="formFile" className='YouTube-p text-start form-label'>Transition URL</label>
                     <div className="input-group ms-md-5 mt-4" >
-                        <input type="text" className="form-control inputborder" id="inputborder" placeholder="URL" aria-label="Username" aria-describedby="basic-addon1" value={TranslationURL} onChange={(e) => setTranslationURL(e.target.value)} style={{ border: "2px solid red" }} />
+                        <input type="text" className="form-control inputborder" id="inputborder" placeholder="URL" aria-label="Username" aria-describedby="basic-addon1" value={TranslationURL} onChange={(e) => setTranslationURL(e.target.value)}  style={{ border: "1px solid gray" }}/>
                         {/* <span className="input-group-text "><BiSearch size={20} color="white" /></span> */}
                     </div>
                 </div>

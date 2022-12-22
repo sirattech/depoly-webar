@@ -126,21 +126,21 @@ console.log("e", e);
               <form onSubmit={handleSubmit(onSubmit)}>
                 <div className='mb-2'>
                   <div className="input-group  mt-2">
-                    <input type="text" className="form-control" name="firstNames" placeholder="First Name" aria-label="Username" aria-describedby="basic-addon1" {...register("firstName", { required: true })} required />
+                    <input type="text" className="form-control signupss" name="firstNames" placeholder="First Name" aria-label="Username" aria-describedby="basic-addon1" {...register("firstName", { required: true })} required />
                     <span className="input-group-text" id="basic-addon1"><HiUser /></span>
                   </div>
                   {/* {errors.firstName &&<>&nbsp;<span style={{color:"red"}}>{errors.firstName.message}</span></>} */}
                 </div>
                 <div className='mb-2'>
                   <div className="input-group ">
-                    <input type="text" className="form-control" name='lastName' placeholder="Last Name" aria-label="Username" aria-describedby="basic-addon1" {...register("lastName", { required: true })} required />
+                    <input type="text" className="form-control signupss" name='lastName' placeholder="Last Name" aria-label="Username" aria-describedby="basic-addon1" {...register("lastName", { required: true })} required />
                     <span className="input-group-text" id="basic-addon1"><HiUser /></span>
                   </div>
                   {/* {errors.lastName &&<>&nbsp;<span style={{color:"red"}}>{errors.lastName.message}</span></>} */}
                 </div>
                 <div className='mb-2'>
                   <div className="input-group">
-                    <input type="text" className="form-control" name='emailadress' placeholder="Email Address" aria-label="Username" aria-describedby="basic-addon1" {...register("email", { required: true })} required />
+                    <input type="text" className="form-control signupss" name='emailadress' placeholder="Email Address" aria-label="Username" aria-describedby="basic-addon1" {...register("email", { required: true })} required />
                     <span className="input-group-text" id="basic-addon1"><MdOutgoingMail /></span>
                   </div>
                   {/* {errors.email &&<> &nbsp;<span style={{color:"red"}}>{errors.email.message}</span></>} */}
@@ -150,14 +150,14 @@ console.log("e", e);
                     <input type={showPassword ? "text" : "password"} className="form-control input-data" name='passwords' placeholder="Password" aria-label="Username" aria-describedby="basic-addon1" {...register("password", { required: true })} required />
                     <span className="input-group-text" onClick={()=>setShowPassword(!showPassword)} style={{cursor: "pointer"}} id="basic-addon1">{showPassword ? <MdVisibility/> : <AiFillEyeInvisible/> }</span>
                   </div>
-                  {/* {errors.password &&<> &nbsp;<span style={{color:"red"}}>{errors.password.message}</span></>} */}
+                  {errors.password &&<> &nbsp;<span style={{color:"red", fontSize: "14px"}}>{errors.password.message}</span></>}
                 </div>
                 <div>
                   <div className="input-group mb-2">
                     <input type={showPasswordOne ? "text" : "password"} className="form-control" name='conform' placeholder="conform Password" aria-label="Username" aria-describedby="basic-addon1" {...register("confirmPwd", { required: true })} required />
                     <span className ="input-group-text" onClick={()=>setShowPasswordOne(!showPasswordOne)} style={{cursor: "pointer"}} id="basic-addon1">{showPasswordOne ? <MdVisibility/> : <AiFillEyeInvisible/> }</span>
                   </div>
-                  {errors.confirmPwd && <> &nbsp;<span style={{ color: "red" }}>{errors.confirmPwd.message}</span></>}
+                  {errors.confirmPwd && <> &nbsp;<span style={{ color: "red",fontSize: "14px" }}>{errors.confirmPwd.message}</span></>}
                 </div>
                 {/* <div className='text-start ms-1'>
                     <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" />

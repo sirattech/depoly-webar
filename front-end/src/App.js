@@ -18,7 +18,8 @@ import PrivateComponent from './Component/PrivateComponent/PrivateComponent';
 import MindarViewer from './mindar-viewer';
 import Preview from './Component/Preview/Preview';
 import Publish from './Component/Publish/Publish';
-
+import Congratulations from './Component/Congratulations/Congratulations';
+import Hello from "./Component/hello/Hello"
 function App() {
   let [data, setData] = useState("")
   console.log("data1111", data);
@@ -32,6 +33,7 @@ function App() {
   return (
     <div className="App">
       {/* <Pagination/> */}
+      {/* <Congratulations/> */}
       <Routes>
         <Route exact path="/" element={<Login />} />
         <Route exact path="/signup" element={<Signup />} />
@@ -49,6 +51,7 @@ function App() {
         </Route>
             <Route path="/mindar" element={<div className="container121"><MindarViewer /><video></video></div>} />
       </Routes>
+      {/* <Hello/> */}
     
 
     </div>

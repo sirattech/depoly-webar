@@ -102,7 +102,7 @@ function Login() {
                   <div className='mb-3'>
                     <div className="input-group  mt-2">
 
-                      <input type="text" className="form-control" placeholder="Email Address" aria-label="Username" aria-describedby="basic-addon1" {...register("email", { required: true })} />
+                      <input type="text" className="form-control signupss" placeholder="Email Address" aria-label="Username" aria-describedby="basic-addon1" {...register("email", { required: true })} />
                       <span className="input-group-text" id="basic-addon1"><HiUser /></span>
 
                       {errors.email && <> &nbsp;<span className='' style={{ color: "red" }}>{errors.email.message}</span></>}

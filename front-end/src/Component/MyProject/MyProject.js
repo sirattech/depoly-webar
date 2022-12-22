@@ -101,33 +101,33 @@ function MyProject() {
             <div className='row d-flex justify-content-center'>
                 <div className='col-lg-12 mt-4 table-responsive table-id' >
 
-                    <table class="table  table-bordered"  >
+                    <table className="table  table-bordered"  >
                         <thead style={{ backgroundColor: '#497DD3', color: 'white' }}>
                             <tr>
                                 {/* <th className='text-start pt-3 pb-3'>Days</th> */}
                                 <th className=' pt-3 pb-3'>Image</th>
                                 <th className=' pt-3 pb-3'>Project Name</th>
                                 <th className=' pt-3 pb-3'>Video Name</th>
-                                <th className=' pt-3 pb-3'>Mind FIle</th>
+                                <th className=' pt-3 pb-3'>Mind File</th>
                                 <th className=' pt-3 pb-3'>Translation URL</th>
-                                <th className=' pt-3 pb-3'>Video Postion</th>
+                                <th className=' pt-3 pb-3'>Video Position</th>
                                 <th className=' pt-3 pb-3'>Video Duration</th>
                                 <th className=' pt-3 pb-3'>View Scene</th>
                             </tr>
                         </thead>
                         {
-                            spinners ? <tbody ><tr className=' ' style={{ height: "400px" }}> <td colSpan="8" > <Spinner animation="border" variant="primary" className='mt-5' style={{ width: "4rem", height: "4rem" }} /></td></tr></tbody> :
+                            spinners ? <tbody ><tr style={{ height: "400px" }}> <td colSpan="8" > <Spinner animation="border" variant="primary" className='mt-5' style={{ width: "4rem", height: "4rem" }} /></td></tr></tbody> :
                                 <>
 
                                 {
-                               dataCheck? <tbody ><tr className=' ' > <td colSpan="8" style={{fontSize: "25px"}}> No Project Create Yet</td></tr></tbody>:
+                               dataCheck? <tbody ><tr> <td colSpan="8" style={{fontSize: "25px"}}> No Project Create Yet</td></tr></tbody>:
                                 <>
                                 {data
                                         // .slice(firstPageIndex, lastPageIndex)
                                         .map((items, index) => {
                                             return (
                                                 <tbody>
-                                                    <tr >
+                                                    <tr>
                                                         <td className='table-td pt-3 pb-3 ellipsis'> <img src={`${BACKEND_URI}/image/${items?.imageget}`} width="100px" height="50px" /></td>
                                                         <td className='table-td pt-3 pb-3 ellipsis'><span>{items?.webardata?.editData}</span></td>
                                                         <td className='table-td pt-3 pb-3 ellipsis first' key={index}><span>{items?.filetoupload}</span></td>

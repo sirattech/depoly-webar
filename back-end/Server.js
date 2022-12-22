@@ -46,7 +46,7 @@ app.post("/data", (req, res) => {
   MongoClient.connect(url, async (err, db) => {
     if (err) throw err;
     var dbo = db.db("mydb");
-    ;
+    
     dbo.collection("webardata").insertOne(myobj, function (err, res) {
      
       if (err) throw err;
@@ -57,9 +57,9 @@ app.post("/data", (req, res) => {
   res.send(myobj)
   
 })
-
 app.get("/getdata", async(req,res)=>{
   let data
+  
   MongoClient.connect(url, async (err, db) => {
     if (err) throw err;
     var dbo = db.db("mydb");
@@ -67,6 +67,7 @@ app.get("/getdata", async(req,res)=>{
     data = await dbo.collection("webardata").find({})
     .toArray(function(err, result) {
       if (err) throw err;
+      // console.log("res", result);
       db.close();
       res.send(result)
     });
@@ -94,8 +95,6 @@ app.post("/upload",upload, (req,res)=>{
   res.send(req.file)
 } )
 
-
-
 app.get("/", (req, res)=>{
   try {
       res.status(200).send("server 🏃🏻‍♂️ good")
@@ -107,8 +106,6 @@ app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 app.get("/datas", (req, res) => {
   res.status(200).send("api running ")
 })
-
-
 
 // ...........................signup page ...............................//
 
@@ -173,8 +170,6 @@ app.post("/login-data", async (req, res) => {
 
 
 //...................................mind File Upload .......................//
-
-
 const mindUpload = multer({
   storage: multer.diskStorage({
       destination: function(req,res,cb){
@@ -195,7 +190,6 @@ app.use('/mind', express.static(path.join(__dirname, '/mind')));
 
 
 // ...........................image upload ...........................//
-
 const imageupload = multer({
   storage : multer.diskStorage({
     destination: function(req,res,cb){
@@ -213,6 +207,114 @@ app.post("/imageupload",imageupload ,async(req,res)=>{
   res.send(req.file);
 })
 app.use('/image', express.static(path.join(__dirname, '/image')));
+
+// ........................... Addresses .............................//
+
+app.post("/address", async(req,res)=>{
+ console.log(req.body);
+ let address =req.body 
+ MongoClient.connect(url, async (err, db) => {
+  if (err) throw err;
+    var dbo = db.db("mydb");
+    dbo.collection("address").insertOne(address, function (err, res) {
+     
+      if (err) throw err;
+      db.close();
+    })
+ })
+ res.send(address)
+})
+
+
+
+app.get("/addresses", async(req,res)=>{
+  let data
+  MongoClient.connect(url, async (err, db) => {
+    if (err) throw err;
+    var dbo = db.db("mydb");
+    // var myobj = {webardata, filetoupload, dataget};
+    data = await dbo.collection("address").find({})
+    .toArray(function(err, result) {
+      if (err) throw err;
+      db.close();
+      if(result.length){
+        res.send(result)
+      } else{
+        res.send({result : "no address found"})
+      }
+      
+    });
+    console.log(data);
+  }) 
+
+})
+
+
+
+// .................notifaction Update ...............//
+
+var  ObjectID = require('mongodb').ObjectId;
+
+app.get("/notification/:id",async(req,res)=>{
+
+
+
+console.log("req.params.id",req.params.id);
+  let rrr = req.params.id
+
+
+MongoClient.connect(url, function(err, db) {
+  if (err) throw err;
+  var dbo = db.db("mydb");
+  
+  var query = { _id: new ObjectID(rrr) };
+  dbo.collection("webardata").find(query).toArray(function(err, result) {
+    if (err) throw err;
+    console.log(result);
+    res.send(result)
+    db.close();
+  });
+});
+})
+// console.log(data);
+
+
+app.put("/notification/:id", async(req,res)=>{
+
+  // const  webardata = require('mongodb').webardata;
+  // console.log("req", req.params.id);
+  console.log("req", req.body);
+  let req1 = req.params.id;
+  // console.log("req1",req1);
+  // let req2 = req.body.id
+  let req3 = req.body.status
+  // console.log("req2",req2);
+  // console.log("req3",req3);
+  // let data
+  // console.log("data", data);
+  // let data2 = 
+  MongoClient.connect(url, async (err, db) => {
+  var data1 = req.body.webardata;
+    if (err) throw err;
+      var dbo = db.db("mydb");
+      console.log("xxxxxxxx");
+      dbo.collection("webardata").update({ _id: new ObjectID(req1)}, 
+      {$set: {
+        "webardata.status": req.body.status
+      },
+    },{ 
+      new: true
+    }, function (err, res) {
+       console.log(res);
+      //  res.send(res)
+        if (err) throw err;
+        db.close();
+      })
+   })
+   res.send(req.body)
+})
+
+
 const port = process.env.PORT || 8000
 app.listen(port, () => {
   console.log(`Server Running at ${port}`)

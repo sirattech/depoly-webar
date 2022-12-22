@@ -65,18 +65,18 @@
     border-bottom-right-radius: 50px !important;
     border: 0.5px solid #0f103c !important;
 }
-input[type="text"]{
-    background-color: #0f103c;
+.signupss  {
+    background-color: #0f103c !important;
     border-top-left-radius: 50px !important;
     border-bottom-left-radius: 50px !important;
-    color: white;
+    color: white !important;
     padding-top: 10px;
     padding-bottom: 10px;
     border: 0.5px solid #0f103c !important;
 }
-input[type="text"]:focus{
-    background-color: #0f103c;
-    color: white;
+.signupss:focus{
+    background-color: #0f103c !important;
+    color: white !important;
     border: 0.5px solid #0f103c !important;
 }
 input[type="password"]{

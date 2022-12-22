@@ -11,9 +11,10 @@
     text-align: left !important;
 
 }
-#inputborder{
-  border-top-right-radius: 10px !important;
-  
+ input::placeholder {
+  /* font-weight: bold; */
+  opacity: 0.8;
+  color: rgb(92, 91, 91) !important;
 }
 .btn-upload{
 
@@ -29,7 +30,7 @@ border-radius: 50px;
   background-color: #5584ff;
   color: white;
     }
-    input[type="radio"] {
+  input[type="radio"] {
       font-size: inherit;
       width: 0.75em;
       height: 0.75em;

@@ -276,23 +276,17 @@ MongoClient.connect(url, function(err, db) {
   });
 });
 })
-// console.log(data);
+
 
 
 app.put("/notification/:id", async(req,res)=>{
 
-  // const  webardata = require('mongodb').webardata;
-  // console.log("req", req.params.id);
+
   console.log("req", req.body);
   let req1 = req.params.id;
-  // console.log("req1",req1);
-  // let req2 = req.body.id
+  
   let req3 = req.body.status
-  // console.log("req2",req2);
-  // console.log("req3",req3);
-  // let data
-  // console.log("data", data);
-  // let data2 = 
+  
   MongoClient.connect(url, async (err, db) => {
   var data1 = req.body.webardata;
     if (err) throw err;
